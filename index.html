@@ -133,12 +133,9 @@
           },
         },
         mounted() {
-          axios.get("./db.json/login").then((res) => {
-            //本地
+          axios.get("./db.json").then((res) => {
             this.accountList = res.data.login;
-            //部署到公网在使用
-            // this.accountList = res.data;
-            console.log(this.accountList);
+            // console.log(this.accountList);
           });
         },
       });

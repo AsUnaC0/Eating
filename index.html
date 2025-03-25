@@ -134,7 +134,10 @@
         },
         mounted() {
           axios.get("./db.json/login").then((res) => {
-            this.accountList = res.data;
+            //本地
+            this.accountList = res.data.login;
+            //部署到公网在使用
+            // this.accountList = res.data;
             console.log(this.accountList);
           });
         },

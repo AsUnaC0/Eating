@@ -133,7 +133,7 @@
           },
         },
         mounted() {
-          axios.get("http://localhost:3000/login").then((res) => {
+          axios.get("./db.json/login").then((res) => {
             this.accountList = res.data;
             console.log(this.accountList);
           });

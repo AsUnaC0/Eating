@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      .log {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        background-color: rgb(245, 237, 226);
+      }
+      .right {
+        margin-right: 50px;
+      }
+      .icon {
+        height: 50px;
+        width: 50px;
+        margin-left: 310px;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+      .icon img {
+        width: 100%;
+        height: 100%;
+      }
+      .left > img {
+        margin-top: 125px;
+        margin-left: 150px;
+      }
+      form {
+        margin-left: 190px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        gap: 5px;
+      }
+      form input {
+        width: 300px;
+        height: 35px;
+        border: 1px solid rgb(220, 219, 218);
+        border-radius: 10px;
+      }
+      button {
+        width: 100px;
+        height: 35px;
+        border-radius: 10px;
+        color: white;
+      }
+      button:hover {
+        cursor: pointer;
+      }
+
+      .buttonBox {
+        display: flex;
+        width: 300px;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 15px;
+        gap: 20px;
+      }
+      #login {
+        background-color: rgb(52, 199, 89);
+      }
+      #register {
+        background-color: rgb(255, 149, 0);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="log">
+        <div class="right"><img src="./image/log.jpg" alt="" /></div>
+        <div class="left">
+          <img src="./image/02.jpg" alt="" />
+          <div class="icon"><img src="./image/icon.jpg" alt="" /></div>
+          <form action="">
+            <span>账户</span>
+            <input v-model="account" type="text" placeholder="  请输入账户" />
+            <span>密码</span>
+            <input
+              v-model="password"
+              type="password"
+              placeholder="  请输入密码" />
+            <div class="buttonBox">
+              <button @click="checkAccount" id="login">登录</button>
+              <button id="register">注册</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data() {
+          return {
+            account: "",
+            password: "",
+            accountList: [],
+          };
+        },
+        methods: {
+          checkAccount(e) {
+            e.preventDefault(); // 阻止默认表单提交
+            if (this.account === "" || this.password === "") {
+              alert("账户或密码不能为空");
+              return;
+            }
+            const user = this.accountList.find(
+              (item) => item.username === this.account
+            );
+            if (!user) {
+              alert("账户不存在");
+              this.account = "";
+              this.password = "";
+              return;
+            }
+            if (user.password === this.password) {
+              alert("登录成功");
+            } else {
+              alert("密码错误");
+            }
+          },
+        },
+        mounted() {
+          axios.get("http://localhost:3000/login").then((res) => {
+            this.accountList = res.data;
+            console.log(this.accountList);
+          });
+        },
+      });
+    </script>
+  </body>
+</html>

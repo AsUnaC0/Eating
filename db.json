@@ -1,0 +1,32 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "大盘鸡",
+      "description": "好吃的大盘鸡",
+      "position": "一食堂"
+    },
+    {
+      "id": 2,
+      "title": "炒饭",
+      "description": "好吃的炒饭",
+      "position": "二食堂"
+    },
+    {
+      "id": 3,
+      "title": "牛肉面",
+      "description": "好吃的牛肉面",
+      "position": "三食堂"
+    }
+  ],
+  "comments": [
+    { "id": 1, "body": "first comment", "postId": 1 },
+    { "id": 2, "body": "second comment", "postId": 1 },
+    { "id": 3, "body": "xxx comment", "postId": 2 }
+  ],
+  "login": [
+    { "username": "Asuna", "password": "707070" },
+    { "username": "wodefa", "password": "606060" },
+    { "username": "yukaihang", "password": "505050" }
+  ]
+}
